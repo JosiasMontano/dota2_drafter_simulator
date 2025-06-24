@@ -13,7 +13,7 @@
             currentPlayer: '',
             isPaused: false,
             timerInterval: null,
-            characters: [ /*complete after */],
+            characters: [ /*complete after s */],
             history: []
 };
 

@@ -83,3 +83,85 @@
     cursor: pointer;
     transition: all 0.3s ease;
 }
+
+        .character-card:hover {
+            box-shadow: 
+                0 0 5px 5px rgba(212, 175, 55, 0.5),
+                0 0 10px 10px rgba(212, 175, 55, 0.3),
+                0 0 10px 10px rgba(212, 175, 55, 0.1);
+        
+        }
+
+        .character-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .character-card.banned::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 0, 0, 0.5);
+        }
+
+        .character-card.selected {
+            border: 2px solid green;
+            background-color: rgba(255, 0, 0, 0.5);
+            box-shadow: 
+                0 0 10px 5px rgba(255, 255, 255, 0.8),
+                0 0 20px 10px rgba(255, 255, 255, 0.5),
+                0 0 30px 15px rgba(255, 255, 255, 0.2);
+            filter: 
+                brightness(40%) 
+                contrast(90%); 
+        }
+
+        .history-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            overflow-y: auto;
+            padding: 10px;
+            background-color: #ddd;
+            border-radius: 8px;
+            height: calc(100vh - 200px);
+        }
+
+        .history-item {
+            display: flex;
+            align-items: center;
+            background-color: #eee;
+            border-radius: 5px;
+            padding: 10px;
+            min-height: 60px;
+        }
+
+        .history-item-number {
+            font-weight: bold;
+            margin-right: 10px;
+            min-width: 20px;
+        }
+
+        .history-item-content {
+            display: flex;
+            align-items: center;
+            flex-grow: 1;
+        }
+
+        .history-item img {
+            height: 50px;
+            width: 50px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+
+        .history-item.banned img {
+            filter: brightness(0.5) sepia(1) hue-rotate(-30deg) saturate(5);
+        }
+
+        
