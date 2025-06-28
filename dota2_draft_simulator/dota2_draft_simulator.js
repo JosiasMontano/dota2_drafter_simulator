@@ -1,48 +1,116 @@
- const gameState = 
- {
+
+        // Game state
+        const gameState = {
             currentTurn: 0,
             turnSequence: [
                 'bp1', 'bp2', 'bp2', 'bp1', 'bp2', 'bp2', 'bp1', 'ep1', 
                 'ep2', 'bp1', 'bp1', 'bp2', 'ep2', 'ep1', 'ep1', 'ep2', 
                 'ep2', 'ep1', 'bp1', 'bp2', 'bp2', 'bp1', 'ep1', 'ep2'
             ],
-            player1ReserveTime: 130, 
+            player1ReserveTime: 130, // 2:10 in seconds
             player2ReserveTime: 130,
             currentTimer: 0,
-            currentTimerType: '', 
+            currentTimerType: '', // 'ban' or 'pick'
             currentPlayer: '',
             isPaused: false,
             timerInterval: null,
-            characters: [ /*complete after s */],
+            characters: [
+            { id: 1, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/abaddon.png' },
+            { id: 2, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/alchemist.png' },
+            { id: 3, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/ancient_apparition.png' },
+            { id: 4, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/antimage.png' },
+            { id: 5, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/arc_warden.png' },
+            { id: 6, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/axe.png' },
+            { id: 7, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/bane.png' },
+            { id: 8, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/batrider.png' },
+            { id: 9, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/beastmaster.png' },
+            { id: 10, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/bloodseeker.png' },
+            { id: 11, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/bounty_hunter.png' },
+            { id: 12, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/brewmaster.png' },
+            { id: 13, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/bristleback.png' },
+            { id: 14, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/broodmother.png' },
+            { id: 15, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/centaur.png' },
+            { id: 16, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/chaos_knight.png' },
+            { id: 17, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/chen.png' },
+            { id: 18, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/clinkz.png' },
+            { id: 19, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/rattletrap.png' },
+            { id: 20, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/crystal_maiden.png' },
+            { id: 21, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/dark_seer.png' },
+            { id: 22, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/dark_willow.png' },
+            { id: 23, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/dawnbreaker.png' },
+            { id: 24, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/dazzle.png' },
+            { id: 25, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/disruptor.png' },
+            { id: 26, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/doom_bringer.png' },
+            { id: 27, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/dragon_knight.png' },
+            { id: 28, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/drow_ranger.png' },
+            { id: 29, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/earth_spirit.png' },
+            { id: 30, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/earthshaker.png' },
+            { id: 31, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/elder_titan.png' },
+            { id: 32, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/ember_spirit.png' },
+            { id: 33, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/enchantress.png' },
+            { id: 34, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/enigma.png' },
+            { id: 35, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/faceless_void.png' },
+            { id: 36, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/grimstroke.png' },
+            { id: 37, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/gyrocopter.png' },
+            { id: 38, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/hoodwink.png' },
+            { id: 39, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/huskar.png' },
+            { id: 40, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/invoker.png' },
+            { id: 41, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/jakiro.png' },
+            { id: 42, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/juggernaut.png' },
+            { id: 43, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/keeper_of_the_light.png' },
+            { id: 44, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/kunkka.png' },
+            { id: 45, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/legion_commander.png' },
+            { id: 46, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/leshrac.png' },
+            { id: 47, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/lich.png' },
+            { id: 48, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/life_stealer.png' },
+            { id: 49, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/lina.png' },
+            { id: 50, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/lion.png' },
+            { id: 51, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/lone_druid.png' },
+            { id: 52, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/luna.png' },
+            { id: 53, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/lycan.png' },
+            { id: 54, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/magnataur.png' },
+            { id: 55, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/marci.png' },
+            { id: 56, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/mars.png' },
+            { id: 57, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/medusa.png' },
+            { id: 58, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/meepo.png' },
+            { id: 59, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/mirana.png' },
+            { id: 60, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/monkey_king.png' },
+            { id: 61, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/naga_siren.png' },
+            { id: 62, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/furion.png' },
+            { id: 63, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/necrolyte.png' },
+            { id: 64, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/night_stalker.png' },
+            { id: 65, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/nyx_assassin.png' },
+            { id: 66, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/ogre_magi.png' },
+            { id: 67, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/omniknight.png' },
+            { id: 68, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/oracle.png' },
+            { id: 69, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/obsidian_destroyer.png' },
+            { id: 70, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/pangolier.png' },
+            { id: 71, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/phantom_assassin.png' },
+            { id: 72, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/phantom_lancer.png' },
+            { id: 73, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/phoenix.png' },
+            { id: 74, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/primal_beast.png' },
+            { id: 75, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/puck.png' },
+            { id: 76, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/pudge.png' },
+            { id: 77, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/pugna.png' },
+            { id: 78, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/queenofpain.png' },
+            { id: 79, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/razor.png' },
+            { id: 80, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/riki.png' },
+            { id: 81, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/rubick.png' },
+            { id: 82, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/sand_king.png' },
+            { id: 83, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/shadow_demon.png' },
+            { id: 84, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/nevermore.png' },
+            { id: 85, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/shadow_shaman.png' },
+            { id: 86, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/silencer.png' },
+            { id: 87, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/skywrath_mage.png' },
+            { id: 88, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/slardar.png' },
+            { id: 89, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/slark.png' },
+            { id: 90, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/sniper.png' },
+            { id: 91, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/spectre.png' },
+            { id: 92, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/spirit_breaker.png' },
+            { id: 93, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/storm_spirit.png' },
+            { id: 94, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/sven.png' },
+            { id: 95, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/techies.png' },
+            { id: 96, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/templar_assassin.png' }
+            ],
             history: []
-};
-
-const charactersGrid = document.getElementById('charactersGrid');
-const historyPanel = document.getElementById('historyPanel');
-const player1TimerDisplay = document.querySelector('#player1Timer .time-display');
- /*complete after */
-
-function initGame() {
-            
-            charactersGrid.innerHTML = '';
-            gameState.characters.forEach(character => {
-                const card = document.createElement('div');
-                card.className = 'character-card';
-                card.dataset.id = character.id;
-                
-                const img = document.createElement('img');
-                img.src = character.imgUrl;
-                img.alt = `Character ${character.id}`;
-                
-                card.appendChild(img);
-                card.addEventListener('click', () => handleCharacterClick(character.id));
-                charactersGrid.appendChild(card);
-                
-                updateCharacterCard(character.id);
-            });
-             
-
-            historyPanel.innerHTML = '';
-            /*complete after */
-            startNextTurn();
-        }
+        };
