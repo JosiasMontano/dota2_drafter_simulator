@@ -114,3 +114,12 @@
             ],
             history: []
         };
+const charactersGrid = document.getElementById('charactersGrid');
+        const historyPanel = document.getElementById('historyPanel');
+        const player1TimerDisplay = document.querySelector('#player1Timer .time-display');
+        const player2TimerDisplay = document.querySelector('#player2Timer .time-display');
+        const currentTimerLabel = document.getElementById('currentTimerLabel');
+        const currentTimeDisplay = document.getElementById('currentTimeDisplay');
+        const pauseBtn = document.getElementById('pauseBtn');
+        const resetBtn = document.getElementById('resetBtn');
+        const gameOverDisplay = document.getElementById('gameOver');
