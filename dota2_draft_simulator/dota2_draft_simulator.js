@@ -110,11 +110,40 @@
             { id: 93, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/storm_spirit.png' },
             { id: 94, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/sven.png' },
             { id: 95, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/techies.png' },
-            { id: 96, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/templar_assassin.png' }
+            { id: 96, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/templar_assassin.png' },
+            { id: 97, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/terrorblade.png' },
+            { id: 98, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/tidehunter.png' },
+            { id: 99, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/shredder.png' },
+            { id: 100, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/tinker.png' },
+            { id: 101, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/tiny.png' },
+            { id: 102, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/treant.png' },
+            { id: 103, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/troll_warlord.png' },
+            { id: 104, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/tusk.png' },
+            { id: 105, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/abyssal_underlord.png' },
+            { id: 106, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/undying.png' },
+            { id: 107, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/ursa.png' },
+            { id: 108, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/vengefulspirit.png' },
+            { id: 109, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/venomancer.png' },
+            { id: 110, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/viper.png' },
+            { id: 111, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/visage.png' },
+            { id: 112, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/void_spirit.png' },
+            { id: 113, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/warlock.png' },
+            { id: 114, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/weaver.png' },
+            { id: 115, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/windrunner.png' },
+            { id: 116, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/winter_wyvern.png' },
+            { id: 117, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/witch_doctor.png' },
+            { id: 118, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/skeleton_king.png' },
+            { id: 119, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/zuus.png' },
+            { id: 120, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/wisp.png' },
+            { id: 121, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/ringmaster.png' },
+            { id: 122, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/muerta.png' },
+            { id: 123, banned: false, selectedBy: null, imgUrl: 'https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/kez.png' }
             ],
             history: []
         };
-const charactersGrid = document.getElementById('charactersGrid');
+
+
+        const charactersGrid = document.getElementById('charactersGrid');
         const historyPanel = document.getElementById('historyPanel');
         const player1TimerDisplay = document.querySelector('#player1Timer .time-display');
         const player2TimerDisplay = document.querySelector('#player2Timer .time-display');
@@ -123,3 +152,46 @@ const charactersGrid = document.getElementById('charactersGrid');
         const pauseBtn = document.getElementById('pauseBtn');
         const resetBtn = document.getElementById('resetBtn');
         const gameOverDisplay = document.getElementById('gameOver');
+
+        
+        function initGame() {
+            
+            charactersGrid.innerHTML = '';
+            gameState.characters.forEach(character => {
+                const card = document.createElement('div');
+                card.className = 'character-card';
+                card.dataset.id = character.id;
+                
+                const img = document.createElement('img');
+                img.src = character.imgUrl;
+                img.alt = `Character ${character.id}`;
+                
+                card.appendChild(img);
+                card.addEventListener('click', () => handleCharacterClick(character.id));
+                charactersGrid.appendChild(card);
+                
+                updateCharacterCard(character.id);
+            });
+
+            
+            historyPanel.innerHTML = '';
+            for (let i = 1; i <= 24; i++) {
+                const historyItem = document.createElement('div');
+                historyItem.className = 'history-item';
+                historyItem.dataset.turn = i;
+                
+                const numberSpan = document.createElement('span');
+                numberSpan.className = 'history-item-number';
+                numberSpan.textContent = i;
+                
+                const contentDiv = document.createElement('div');
+                contentDiv.className = 'history-item-content';
+                
+                historyItem.appendChild(numberSpan);
+                historyItem.appendChild(contentDiv);
+                historyPanel.appendChild(historyItem);
+            }
+
+            
+            startNextTurn();
+        }
