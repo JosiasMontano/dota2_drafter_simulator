@@ -195,3 +195,48 @@
             
             startNextTurn();
         }
+
+        
+        function updateCharacterCard(characterId) {
+            const character = gameState.characters.find(c => c.id === characterId);
+            const card = document.querySelector(`.character-card[data-id="${characterId}"]`);
+            
+            if (!card) return;
+            
+            card.classList.toggle('banned', character.banned);
+            card.classList.toggle('selected', character.selectedBy !== null);
+        }
+
+        
+        function startNextTurn() {
+            gameState.currentTurn++;
+            
+            if (gameState.currentTurn > gameState.turnSequence.length) {
+                endGame();
+                return;
+            }
+            
+            const currentAction = gameState.turnSequence[gameState.currentTurn - 1];
+            gameState.currentPlayer = currentAction.includes('1') ? 'player1' : 'player2';
+            gameState.currentTimerType = currentAction.startsWith('b') ? 'ban' : 'pick';
+            
+            
+            gameState.currentTimer = gameState.currentTimerType === 'ban' ? 20 : 30;
+            
+            
+            currentTimerLabel.textContent = currentAction === 'bp1' ? 'Tiempo del jugador 1 (ban)' :
+                                         currentAction === 'bp2' ? 'Tiempo del jugador 2 (ban)' :
+                                         currentAction === 'ep1' ? 'Tiempo del jugador 1 (pick)' :
+                                         'Tiempo del jugador 2 (pick)';
+            
+            updateTimerDisplays();
+            
+            
+            if (gameState.timerInterval) {
+                clearInterval(gameState.timerInterval);
+            }
+            
+            gameState.timerInterval = setInterval(updateTimers, 1000);
+        }
+
+    
