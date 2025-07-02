@@ -239,4 +239,48 @@
             gameState.timerInterval = setInterval(updateTimers, 1000);
         }
 
+        
+        function updateTimerDisplays() {
+            
+            const formatTime = (seconds) => {
+                const mins = Math.floor(seconds / 60);
+                const secs = seconds % 60;
+                return `${mins}:${secs < 10 ? '0' + secs : secs}`;
+            };
+            
+            player1TimerDisplay.textContent = formatTime(gameState.player1ReserveTime);
+            player2TimerDisplay.textContent = formatTime(gameState.player2ReserveTime);
+            currentTimeDisplay.textContent = formatTime(gameState.currentTimer);
+        }
+
+        
+        function updateTimers() {
+            if (gameState.isPaused) return;
+            
+            if (gameState.currentTimer > 0) {
+                gameState.currentTimer--;
+            } else {
+                e
+                if (gameState.currentPlayer === 'player1' && gameState.player1ReserveTime > 0) {
+                    gameState.player1ReserveTime--;
+                } else if (gameState.currentPlayer === 'player2' && gameState.player2ReserveTime > 0) {
+                    gameState.player2ReserveTime--;
+                } else {
+                    
+                    makeRandomSelection();
+                    return;
+                }
+            }
+            
+            updateTimerDisplays();
+            
+            // Check if all time is up
+            if ((gameState.currentPlayer === 'player1' && gameState.player1ReserveTime <= 0 && gameState.currentTimer <= 0) ||
+                (gameState.currentPlayer === 'player2' && gameState.player2ReserveTime <= 0 && gameState.currentTimer <= 0)) {
+                makeRandomSelection();
+            }
+        }
+
+
+            
     
