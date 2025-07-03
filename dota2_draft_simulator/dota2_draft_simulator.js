@@ -281,6 +281,43 @@
             }
         }
 
+        // Make a random selection when time runs out
+        function makeRandomSelection() {
+            const availableCharacters = gameState.characters.filter(c => 
+                !c.banned && c.selectedBy === null
+            );
+            
+            if (availableCharacters.length > 0) {
+                const randomIndex = Math.floor(Math.random() * availableCharacters.length);
+                const characterId = availableCharacters[randomIndex].id;
+                
+                if (gameState.currentTimerType === 'ban') {
+                    banCharacter(characterId);
+                } else {
+                    selectCharacter(characterId);
+                }
+            } else {
+                // No characters left (shouldn't happen with proper setup)
+                endTurn();
+            }
+        }
 
+        // Handle character click
+        function handleCharacterClick(characterId) {
+            const character = gameState.characters.find(c => c.id === characterId);
+            
+            if (character.banned || character.selectedBy !== null) {
+                return; // Character already banned or selected
+            }
+            
+            if (gameState.currentTimerType === 'ban') {
+                banCharacter(characterId);
+            } else {
+                selectCharacter(characterId);
+            }
+        }
+
+
+            
             
     
