@@ -317,7 +317,89 @@
             }
         }
 
+        // Ban a character
+        function banCharacter(characterId) {
+            const character = gameState.characters.find(c => c.id === characterId);
+            character.banned = true;
+            
+            // Add to history
+            gameState.history.push({
+                turn: gameState.currentTurn,
+                action: gameState.currentPlayer === 'player1' ? 'bp1' : 'bp2',
+                characterId: characterId
+            });
+            
+            updateHistory();
+            updateCharacterCard(characterId);
+            endTurn();
+        }
 
+        // Select a character
+        function selectCharacter(characterId) {
+            const character = gameState.characters.find(c => c.id === characterId);
+            character.selectedBy = gameState.currentPlayer;
+            
+            // Add to history
+            gameState.history.push({
+                turn: gameState.currentTurn,
+                action: gameState.currentPlayer === 'player1' ? 'ep1' : 'ep2',
+                characterId: characterId
+            });
+            
+            updateHistory();
+            updateCharacterCard(characterId);
+            endTurn();
+        }
+
+        // Update history display
+        function updateHistory() {
+            const historyItem = document.querySelector(`.history-item[data-turn="${gameState.currentTurn}"]`);
+            const contentDiv = historyItem.querySelector('.history-item-content');
+            
+            const lastAction = gameState.history[gameState.history.length - 1];
+            const character = gameState.characters.find(c => c.id === lastAction.characterId);
+            
+            contentDiv.innerHTML = `
+                <span class="history-label">${lastAction.action.toUpperCase()}</span>
+                <img src="${character.imgUrl}">
+            `;
+            
+            if (lastAction.action.startsWith('b')) {
+                historyItem.classList.add('banned');
+            } else {
+                historyItem.classList.remove('banned');
+            }
+        }
+
+        function endTurn() {
+            clearInterval(gameState.timerInterval);
+            startNextTurn();
+        }
+
+        function endGame() {
+            clearInterval(gameState.timerInterval);
+            gameOverDisplay.style.display = 'block';
+        }
+
+        pauseBtn.addEventListener('click', () => {
+            gameState.isPaused = !gameState.isPaused;
+            pauseBtn.textContent = gameState.isPaused ? 'Reanudar' : 'Pausa';
+        });
+
+        resetBtn.addEventListener('click', () => {
+            clearInterval(gameState.timerInterval);
+            
+            gameState.currentTurn = 0;
+            gameState.player1ReserveTime = 130;
+            gameState.player2ReserveTime = 130;
+            gameState.currentTimer = 0;
+            gameState.isPaused = false;
+            gameState.history = [];
+            
+            gameState.characters.forEach(c => {
+                c.banned = false;
+                c.selectedBy = null;
+            });
             
             
     
